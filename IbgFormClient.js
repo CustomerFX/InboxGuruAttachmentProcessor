@@ -1,4 +1,17 @@
-﻿function setupIbgProcessor() {
+﻿/* 
+
+    InboxGuruAttachmentProcessor Form Client API 
+    --------------------------------------------
+    Include file attachments for InboxGuru Landing Page forms to create attachments in Infor CRM
+
+    See full details & license here: 
+    https://github.com/CustomerFX/InboxGuruAttachmentProcessor
+
+    Copyright (c) 2018 Customer FX Corporation 
+
+*/
+
+function setupIbgProcessor() {
     if (!setupDataIdField()) {
         document.write('<span style="color:red;">Form is not set up correctly, could not locate hidden field with data-id="match"</span>');
     }

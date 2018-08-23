@@ -1,4 +1,17 @@
-﻿using System;
+﻿/* 
+
+    InboxGuruAttachmentProcessor  
+    ----------------------------
+    Include file attachments for InboxGuru Landing Page forms to create attachments in Infor CRM
+
+    See full details & license here: 
+    https://github.com/CustomerFX/InboxGuruAttachmentProcessor
+
+    Copyright (c) 2018 Customer FX Corporation 
+
+*/
+
+using System;
 using System.Linq;
 using System.Text;
 using System.Web.Configuration;

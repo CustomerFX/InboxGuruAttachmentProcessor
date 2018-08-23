@@ -35,4 +35,5 @@ Change it to this:
 
 That is all. Now, when the form is submitted, the IbgProcessor will first handle the request and add any attachments to the Infor CRM system. Then, when the Lead or Contact is sent from InboxGuru the trigger will link the attachment to the newly created Lead or Contact.
 
+Copyright (c) 2018 Customer FX Corporation 
 [customerfx.com](https://customerfx.com)
