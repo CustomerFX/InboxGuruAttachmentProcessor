@@ -5,7 +5,9 @@ How this works is as follows. The included code is an ASP.NET website that you w
 
 It does this by adding a unique value to the form, which is passed along with the data to both the attachment record and the data to InboxGuru. When InboxGuru then synchronizes the Lead or Contact to Infor CRM, a SQL trigger will link the already created attachment with the newly created Lead or Contact. 
 
-**To set the IbgProcessor up:**
+> ***Note*:** This code uses USERFIELD1 on the LEAD/CONTACT table for storing the unique ID value needed to link the attachment with the lead/contact. If you are using USERFIELD1 for some other purpose, modify the included triggers to use some other field instead.
+
+**To set up the IbgProcessor ASP.NET website:**
 
 1. Unzip the attached on an IIS server and set up as an ASP.NET application
 2. Modify the web.config with your SData URL and a valid Infor CRM username & password 
