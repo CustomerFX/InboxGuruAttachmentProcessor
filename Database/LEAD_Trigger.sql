@@ -1,0 +1,35 @@
+﻿/* 
+
+	--- LEAD ---
+
+	This adds a trigger to link leads created via InboxGuru with attachments
+
+	NOTE: This trigger is only necessary *if* you are creating contacts from InboxGuru landing pages with attachments
+
+*/
+
+IF  EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'[sysdba].[LEAD_LINK_INBOXGURU_ATTACHMENT]'))
+DROP TRIGGER [sysdba].LEAD_LINK_INBOXGURU_ATTACHMENT
+GO
+
+CREATE TRIGGER sysdba.LEAD_LINK_INBOXGURU_ATTACHMENT ON sysdba.LEAD AFTER INSERT, UPDATE
+AS 
+BEGIN
+    SET NOCOUNT ON
+    
+    DECLARE @matchId VARCHAR(80)
+    DECLARE @leadId VARCHAR(12)
+    
+    IF EXISTS(SELECT * FROM INSERTED WHERE USERFIELD1 IS NOT NULL)
+    BEGIN
+		SELECT @leadId = LEADID FROM INSERTED 
+		SELECT @matchId = USERFIELD1 FROM INSERTED
+		
+		IF EXISTS(SELECT ATTACHID FROM sysdba.ATTACHMENT WHERE DESCRIPTION = @matchId)
+		BEGIN
+			UPDATE sysdba.ATTACHMENT SET LEADID = @leadId, DESCRIPTION = SUBSTRING(FILENAME, 14, LEN(FILENAME) - 13) WHERE DESCRIPTION = @matchId 
+			UPDATE sysdba.LEAD SET USERFIELD1 = NULL WHERE LEADID = @leadId
+		END
+    END
+END
+GO

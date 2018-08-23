@@ -1,0 +1,35 @@
+﻿/* 
+
+	--- CONTACT ---
+
+	This adds a trigger to link contacts created via InboxGuru with attachments
+
+	NOTE: This trigger is only necessary *if* you are creating contacts from InboxGuru landing pages with attachments
+
+*/
+
+IF  EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'[sysdba].[CONTACT_LINK_INBOXGURU_ATTACHMENT]'))
+DROP TRIGGER [sysdba].CONTACT_LINK_INBOXGURU_ATTACHMENT
+GO
+
+CREATE TRIGGER sysdba.CONTACT_LINK_INBOXGURU_ATTACHMENT ON sysdba.CONTACT AFTER INSERT, UPDATE
+AS 
+BEGIN
+    SET NOCOUNT ON
+    
+    DECLARE @matchId VARCHAR(80)
+    DECLARE @contactId VARCHAR(12)
+    
+    IF EXISTS(SELECT * FROM INSERTED WHERE USERFIELD1 IS NOT NULL)
+    BEGIN
+		SELECT @contactId = CONTACTID FROM INSERTED 
+		SELECT @matchId = USERFIELD1 FROM INSERTED
+		
+		IF EXISTS(SELECT ATTACHID FROM sysdba.ATTACHMENT WHERE DESCRIPTION = @matchId)
+		BEGIN
+			UPDATE sysdba.ATTACHMENT SET CONTACTID = @contactId, DESCRIPTION = SUBSTRING(FILENAME, 14, LEN(FILENAME) - 13) WHERE DESCRIPTION = @matchId 
+			UPDATE sysdba.CONTACT SET USERFIELD1 = NULL WHERE CONTACTID = @contactId
+		END
+    END
+END
+GO
