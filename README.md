@@ -1,5 +1,5 @@
-# InboxGuru-Form-Attachments
-Include file attachments for InboxGuru Landing Page forms. 
+# InboxGuruAttachmentProcessor
+Include file attachments for InboxGuru Landing Page forms to create attachments in Infor CRM
 
 How this works is as follows. The included code is an ASP.NET website that you will need to host on an IIS server somewhere. It hijacks the request from InboxGuru forms, and adds any attachments to Infor CRM, then passes the request off to InboxGuru normally to process the data and create a Lead or Contact as defined for the form. 
 
