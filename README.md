@@ -9,7 +9,7 @@ It does this by adding a unique value to the form, which is passed along with th
 
 **To set up the IbgProcessor ASP.NET website:**
 
-1. Unzip the attached on an IIS server and set up as an ASP.NET application
+1. Unzip the attached on an IIS server and set up as an ASP.NET application (this does *not* have to reside on the same web server where the InboxGuru forms are being used) 
 2. Modify the web.config with your SData URL and a valid Infor CRM username & password 
 3. Use the triggers in the Database folder to create the LEAD or CONTACT table triggers as necessary *in your Infor CRM database*
 
