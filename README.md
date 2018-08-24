@@ -33,7 +33,7 @@ Change it to this:
 
 `<input id='attachment' name='attachment' type='file' />`
 
-You can view a complete sample InboxGuru form with this added [here](https://raw.githubusercontent.com/CustomerFX/InboxGuruAttachmentProcessor/master/Sample/SampleInboxGuruForm.htm)
+You can view a complete sample InboxGuru form with this added [here](https://github.com/CustomerFX/InboxGuruAttachmentProcessor/blob/master/Sample/SampleInboxGuruForm.htm)
 
 That is all. Now, when the form is submitted, the IbgProcessor will first handle the request and add any attachments to the Infor CRM system. Then, when the Lead or Contact is sent from InboxGuru the trigger will link the attachment to the newly created Lead or Contact.
 
