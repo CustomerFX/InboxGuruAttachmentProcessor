@@ -14,6 +14,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Configuration;
 using Saleslogix.SData.Client;
 using Saleslogix.SData.Client.Framework;
@@ -67,7 +68,7 @@ public partial class IbgProcessor : System.Web.UI.Page
         foreach (string key in Request.Form.Keys)
         {
             if (key == "ibgMatchField") continue;
-            sb.AppendFormat("<input type='hidden' name='{0}' id='{0}' value='{1}'>", key, Request.Form[key]);
+            sb.AppendFormat("<input type='hidden' name='{0}' id='{0}' value='{1}'>", key, HttpUtility.HtmlEncode(Request.Form[key]));
         }
 
         sb.Append("</form>");
